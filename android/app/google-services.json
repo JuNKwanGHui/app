@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "896180207826",
+    "project_id": "blackbox-1c6bf",
+    "storage_bucket": "blackbox-1c6bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896180207826:android:cf198ff4437400c2f8ad0b",
+        "android_client_info": {
+          "package_name": "com.example.d_vision"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896180207826-8b0vl96k7o9v0nqj8bo94srkl0uvh6l2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUJrYJqACRsHa9c_NtvgApdGoXXP2kPkI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896180207826-8b0vl96k7o9v0nqj8bo94srkl0uvh6l2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "896180207826-fvi6187m0tv1psvcjjco7ocb9q6crbbd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.dVision"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896180207826:android:ef7ee3d071b26dcdf8ad0b",
+        "android_client_info": {
+          "package_name": "com.example.ddvision"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896180207826-8b0vl96k7o9v0nqj8bo94srkl0uvh6l2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUJrYJqACRsHa9c_NtvgApdGoXXP2kPkI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896180207826-8b0vl96k7o9v0nqj8bo94srkl0uvh6l2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "896180207826-fvi6187m0tv1psvcjjco7ocb9q6crbbd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.dVision"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
