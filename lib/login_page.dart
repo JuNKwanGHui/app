@@ -79,7 +79,10 @@ class _LoginPageState extends State<LoginPage> {
               fixedSize: Size(300, 100),
             ),
             child: Text('로그인'),
-            onPressed: submit,
+            onPressed: (){
+              //Navigator.pushReplacementNamed(context, '/main_page');
+              Navigator.pushNamed(context, '/main_page');
+            },
           ),
         )
     );
