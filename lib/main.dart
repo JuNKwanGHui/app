@@ -1,6 +1,7 @@
 import 'package:ddvision/login_page.dart';
 import 'package:ddvision/register_page.dart';
 import 'package:ddvision/start_page.dart';
+import 'package:ddvision/main_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -24,9 +25,10 @@ class MyApp extends StatelessWidget {
       routes:{
         '/login_page': (context) => LoginPage(),
         '/register_page': (context) => RegisterPage(),
+        '/main_page':(context) => HomePage(),
       },
-      //home: LoginPage(), RegisterPage(),
-      home: StartPage(),
+      //home: LoginPage(), RegisterPage(),StartPage()
+      home: HomePage(),
     );
   }
 }
