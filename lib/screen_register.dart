@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ddvision/model_auth.dart';
@@ -10,7 +11,9 @@ class RegisterScreen extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => RegisterModel(),
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          backgroundColor: CupertinoColors.darkBackgroundGray,
+        ),
         body: Column(
           children: [
             EmailInput(),
@@ -38,11 +41,21 @@ class EmailInput extends StatelessWidget {
         decoration: InputDecoration(
           labelText: 'email',
           helperText: '',
+          labelStyle: TextStyle(color: Colors.black),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+          ),
         ),
+        style: TextStyle(color: Colors.black),
+        cursorColor: Colors.black, // 검정색 커서 지정
       ),
     );
   }
 }
+
 
 class PasswordInput extends StatelessWidget {
   @override
@@ -58,8 +71,16 @@ class PasswordInput extends StatelessWidget {
         decoration: InputDecoration(
           labelText: 'password',
           helperText: '',
+          labelStyle: TextStyle(color: Colors.black),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+          ),
           errorText: register.password != register.passwordConfirm ? 'Password incorrect' : null,
         ),
+        cursorColor: Colors.black, // 검정색 커서 지정
       ),
     );
   }
@@ -79,7 +100,15 @@ class PasswordConfirmInput extends StatelessWidget {
         decoration: InputDecoration(
           labelText: 'password confirm',
           helperText: '',
+          labelStyle: TextStyle(color: Colors.black),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+          ),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+          ),
         ),
+        cursorColor: Colors.black, // 검정색 커서 지정
       ),
     );
   }
@@ -99,6 +128,7 @@ class RegistButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
           ),
+          backgroundColor: Colors.grey, // 버튼 색 회색
         ),
         onPressed: (register.password != register.passwordConfirm) ? null : () async {
           await authClient
@@ -124,4 +154,5 @@ class RegistButton extends StatelessWidget {
       ),
     );
   }
+
 }

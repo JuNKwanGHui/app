@@ -12,7 +12,7 @@ class PageView5 extends State<test5>{
     return Scaffold(
       backgroundColor: Color.fromRGBO(244, 243, 243, 1),
       appBar: AppBar(
-        title: Text('중고 장터',style: TextStyle(color: Colors.black87),),
+        title: Text('설정',style: TextStyle(color: Colors.black87),),
         iconTheme: IconThemeData(color: Colors.black87),
         backgroundColor: Colors.white,
         elevation: 0, systemOverlayStyle: SystemUiOverlayStyle.dark,

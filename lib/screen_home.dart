@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:ddvision/screen_community.dart';
 import 'package:ddvision/screen_use.dart';
 import 'package:ddvision/screen_drive.dart';
+import 'package:ddvision/screen_gps.dart';
+import 'package:ddvision/screen_login.dart';
 import 'package:ddvision/notice_board//screen_notice.dart';
 import 'package:ddvision/model_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
@@ -19,6 +21,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final authClient =
     Provider.of<FirebaseAuthProvider>(context, listen: false);  //로그아웃 함수선언
+
+    // if (authClient.user?.email == null) {
+    //   Navigator.push(
+    //     context,
+    //     MaterialPageRoute(builder: (context) => LoginScreen()),
+    //   );
+    // }
 
     return Scaffold(
       resizeToAvoidBottomInset : false,
@@ -67,18 +76,19 @@ class _HomePageState extends State<HomePage> {
               currentAccountPicture: CircleAvatar(
                 backgroundImage: AssetImage('assets/images/car1.jpeg'),
               ),
-              otherAccountsPictures: [
-                CircleAvatar(
-                  backgroundImage: AssetImage('assets/profile.png'),
-                )
-              ],
-              accountEmail: Text(authClient.user!.email!),
-              accountName: Text('Se Pil'),
+              //otherAccountsPictures: [
+                // CircleAvatar(
+                //   backgroundImage: AssetImage('assets/profile.png'),
+                // )
+              //],
+              //accountEmail: Text(authClient.user!.email!),
+              accountEmail: Text('qwer1234@gmail.com'),
+              accountName: Text('User'),
               onDetailsPressed: () {
                 print('press details');
               },
               decoration: BoxDecoration(
-                  color: Colors.blue[300],
+                  color: Colors.grey,
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(40),
                     bottomRight: Radius.circular(40),
@@ -86,12 +96,12 @@ class _HomePageState extends State<HomePage> {
             ),
             ListTile(
               leading: Icon(
-                Icons.settings,
+                Icons.photo_camera,
                 color: Colors.grey[850],
               ),
-              title: Text('분실물 센터'),
+              title: Text('블랙박스 설정'),
               onTap: () {
-                print('분실물 센터 클릭');
+                print('블랙박스 설정');
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -100,34 +110,19 @@ class _HomePageState extends State<HomePage> {
               },
               // trailing: Icon(Icons.add),
             ),
+
             ListTile(
               leading: Icon(
-                Icons.question_answer,
+                Icons.gps_fixed_sharp,
                 color: Colors.grey[850],
               ),
-              title: Text('공지사항'),
+              title: Text('최근 위치'),
               onTap: () {
-                print('공지사항 클릭');
+                print('최근 위치');
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Notice())
-                );
-              },
-              // trailing: Icon(Icons.add),
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.groups,
-                color: Colors.grey[850],
-              ),
-              title: Text('커뮤니티'),
-              onTap: () {
-                print('커뮤니티 클릭');
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => test3())
+                        builder: (context) => Gps())
                 );
               },
               // trailing: Icon(Icons.add),
@@ -150,12 +145,28 @@ class _HomePageState extends State<HomePage> {
             ),
             ListTile(
               leading: Icon(
-                Icons.shopping_cart,
+                Icons.question_mark,
                 color: Colors.grey[850],
               ),
-              title: Text('중고장터'),
+              title: Text('공지사항'),
               onTap: () {
-                print('중고장터 클릭');
+                print('공지사항 클릭');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Notice())
+                );
+              },
+              // trailing: Icon(Icons.add),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.settings,
+                color: Colors.grey[850],
+              ),
+              title: Text('설정'),
+              onTap: () {
+                print('설정');
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -234,7 +245,7 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      '오늘의 분실물',
+                      '이벤트 영상',
                       style:
                       TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
@@ -283,7 +294,7 @@ class _HomePageState extends State<HomePage> {
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Text(
-                              '공지사항',
+                              '최근 위치',
                               style:
                               TextStyle(color: Colors.white, fontSize: 20),
                             ),

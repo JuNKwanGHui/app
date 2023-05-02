@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(DriveVideo());
@@ -37,7 +38,11 @@ class _DriveVideo extends State<DriveVideo> {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
-      title: const Text('Download Files'),
+      title: Text('Download Files',style: TextStyle(color: Colors.black87),),
+      iconTheme: IconThemeData(color: Colors.black87),
+      backgroundColor: Colors.white,
+      elevation: 0,
+      systemOverlayStyle: SystemUiOverlayStyle.dark,
     ),
     body: FutureBuilder<ListResult>(
       future:futureFiles,

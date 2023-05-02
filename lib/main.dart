@@ -8,6 +8,7 @@ import 'screen_home.dart';
 import 'screen_login.dart';
 import 'screen_splash.dart';
 import 'screen_register.dart';
+import 'screen_gps.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'model_auth.dart';
