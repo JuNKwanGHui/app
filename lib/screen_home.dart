@@ -94,22 +94,22 @@ class _HomePageState extends State<HomePage> {
                     bottomRight: Radius.circular(40),
                   )),
             ),
-            ListTile(
-              leading: Icon(
-                Icons.photo_camera,
-                color: Colors.grey[850],
-              ),
-              title: Text('블랙박스 설정'),
-              onTap: () {
-                print('블랙박스 설정');
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => test())
-                );
-              },
-              // trailing: Icon(Icons.add),
-            ),
+            // ListTile(
+            //   leading: Icon(
+            //     Icons.photo_camera,
+            //     color: Colors.grey[850],
+            //   ),
+            //   title: Text('블랙박스 설정'),
+            //   onTap: () {
+            //     print('블랙박스 설정');
+            //     Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //             builder: (context) => test())
+            //     );
+            //   },
+            //   // trailing: Icon(Icons.add),
+            // ),
 
             ListTile(
               leading: Icon(
@@ -143,38 +143,38 @@ class _HomePageState extends State<HomePage> {
               },
               // trailing: Icon(Icons.add),
             ),
-            ListTile(
-              leading: Icon(
-                Icons.question_mark,
-                color: Colors.grey[850],
-              ),
-              title: Text('공지사항'),
-              onTap: () {
-                print('공지사항 클릭');
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Notice())
-                );
-              },
-              // trailing: Icon(Icons.add),
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.settings,
-                color: Colors.grey[850],
-              ),
-              title: Text('설정'),
-              onTap: () {
-                print('설정');
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => test5())
-                  );
-
-              },
-            )
+            // ListTile(
+            //   leading: Icon(
+            //     Icons.question_mark,
+            //     color: Colors.grey[850],
+            //   ),
+            //   title: Text('공지사항'),
+            //   onTap: () {
+            //     print('공지사항 클릭');
+            //     Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //             builder: (context) => Notice())
+            //     );
+            //   },
+            //   // trailing: Icon(Icons.add),
+            // ),
+            // ListTile(
+            //   leading: Icon(
+            //     Icons.settings,
+            //     color: Colors.grey[850],
+            //   ),
+            //   title: Text('설정'),
+            //   onTap: () {
+            //     print('설정');
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //           builder: (context) => test5())
+            //       );
+            //
+            //   },
+            // )
           ],
         ),
       ),
