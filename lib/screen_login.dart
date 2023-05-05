@@ -140,7 +140,6 @@ class LoginButton extends StatelessWidget {
         child: Text('로그인',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,
             fontSize: 20,)),
-
       ),
     );
   }

@@ -44,38 +44,38 @@ class _GpsState extends State<Gps> {
           ),
         ],
       ),
-      body: FutureBuilder<DataSnapshot>(
-        future: databaseReference.limitToLast(1).get(),
-        builder: (context, snapshot) {
-          if (snapshot.data!.value != null) {
-            final data =
-                (snapshot.data!.value as Map<dynamic, dynamic>).values.last;
-            final lat = double.parse(data["lat"]);
-            final lng = double.parse(data["lng"]);
+        body: FutureBuilder<DataSnapshot>(
+          future: databaseReference.limitToLast(1).get(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData && snapshot.data!.value != null) {
+              final data =
+                  (snapshot.data!.value as Map<dynamic, dynamic>).values.last;
+              final lat = double.parse(data["lat"]);
+              final lng = double.parse(data["lng"]);
 
-            return GoogleMap(
-              onMapCreated: _onMapCreated,
-              initialCameraPosition: CameraPosition(
-                target: LatLng(lat, lng),
-                zoom: 16.0,
-              ),
-              markers: Set<Marker>.of([
-                Marker(
-                  markerId: MarkerId("current-location"),
-                  position: LatLng(lat, lng),
-                  icon: BitmapDescriptor.defaultMarkerWithHue(
-                    BitmapDescriptor.hueRed,
-                  ),
-                )
-              ]),
-            );
-          } else if (snapshot.hasError) {
-            return Center(child: Text("Error: ${snapshot.error}"));
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
+              return GoogleMap(
+                onMapCreated: _onMapCreated,
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(lat, lng),
+                  zoom: 16.0,
+                ),
+                markers: Set<Marker>.of([
+                  Marker(
+                    markerId: MarkerId("current-location"),
+                    position: LatLng(lat, lng),
+                    icon: BitmapDescriptor.defaultMarkerWithHue(
+                      BitmapDescriptor.hueRed,
+                    ),
+                  )
+                ]),
+              );
+            } else if (snapshot.hasError) {
+              return Center(child: Text("Error: ${snapshot.error}"));
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          },
+        ),
     );
   }
 
