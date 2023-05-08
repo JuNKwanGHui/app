@@ -13,14 +13,14 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:path/path.dart' as path;
 
-class CutVideoPage extends StatefulWidget {
-  const CutVideoPage({Key? key}) : super(key: key);
+class ShockVideoPage extends StatefulWidget {
+  const ShockVideoPage({Key? key}) : super(key: key);
 
   @override
-  _CutVideoPageState createState() => _CutVideoPageState();
+  _ShockVideoPageState createState() => _ShockVideoPageState();
 }
 
-class _CutVideoPageState extends State<CutVideoPage> {
+class _ShockVideoPageState extends State<ShockVideoPage> {
 
   late Future<ListResult> _futureFileList;
   Map<int, double> downloadProgress = {};
@@ -34,7 +34,7 @@ class _CutVideoPageState extends State<CutVideoPage> {
   Future<ListResult> _getFilesForSelectedDate(DateTime selectedDate) async {
     final dateFormat = DateFormat('yyyyMMdd');
     final dateString = dateFormat.format(selectedDate);
-    final folderPath = '/postanalytical/cut/$dateString';
+    final folderPath = '/postanalytical/shock/$dateString';
     final result = await FirebaseStorage.instance.ref(folderPath).listAll();
     return result;
   }
@@ -44,7 +44,7 @@ class _CutVideoPageState extends State<CutVideoPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          '이벤트 영상-칼치기',
+          '이벤트 영상 - 충격감지',
           style: TextStyle(color: Colors.black87),
         ),
         iconTheme: IconThemeData(color: Colors.black87),

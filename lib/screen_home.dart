@@ -6,6 +6,9 @@ import 'package:ddvision/screen_community.dart';
 import 'package:ddvision/screen_cut.dart';
 import 'package:ddvision/screen_drive.dart';
 import 'package:ddvision/screen_gps.dart';
+import 'package:ddvision/screen_shock.dart';
+import 'package:ddvision/screen_stop.dart';
+import 'package:ddvision/screen_traffic.dart';
 import 'package:ddvision/screen_login.dart';
 import 'package:ddvision/notice_board//screen_notice.dart';
 import 'package:ddvision/model_auth.dart';
@@ -138,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => DriveVideo())
+                        builder: (context) => AllVideoPage())
                 );
               },
               // trailing: Icon(Icons.add),
@@ -155,6 +158,54 @@ class _HomePageState extends State<HomePage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => CutVideoPage())
+                );
+              },
+              // trailing: Icon(Icons.add),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.traffic,
+                color: Colors.grey[850],
+              ),
+              title: Text('이벤트 영상 - 신호위반'),
+              onTap: () {
+                print('이벤트 영상 - 신호위반');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => TrafficVideoPage())
+                );
+              },
+              // trailing: Icon(Icons.add),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.stop_circle_rounded,
+                color: Colors.grey[850],
+              ),
+              title: Text('이벤트 영상 - 급정지'),
+              onTap: () {
+                print('이벤트 영상 - 급정지');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => StopVideoPage())
+                );
+              },
+              // trailing: Icon(Icons.add),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.car_crash_rounded,
+                color: Colors.grey[850],
+              ),
+              title: Text('이벤트 영상 - 충격감지'),
+              onTap: () {
+                print('이벤트 영상 - 충격감지');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ShockVideoPage())
                 );
               },
               // trailing: Icon(Icons.add),
