@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:ddvision/screen_community.dart';
-import 'package:ddvision/screen_use.dart';
+import 'package:ddvision/screen_cut.dart';
 import 'package:ddvision/screen_drive.dart';
 import 'package:ddvision/screen_gps.dart';
 import 'package:ddvision/screen_login.dart';
@@ -139,6 +139,22 @@ class _HomePageState extends State<HomePage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => DriveVideo())
+                );
+              },
+              // trailing: Icon(Icons.add),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.add_road_sharp,
+                color: Colors.grey[850],
+              ),
+              title: Text('이벤트 영상 - 칼치기'),
+              onTap: () {
+                print('이벤트 영상 - 칼치기');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CutVideoPage())
                 );
               },
               // trailing: Icon(Icons.add),
