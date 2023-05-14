@@ -39,7 +39,7 @@ class EmailInput extends StatelessWidget {
         },
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
-          labelText: 'email',
+          labelText: '이메일',
           helperText: '',
           labelStyle: TextStyle(color: Colors.black),
           enabledBorder: UnderlineInputBorder(
@@ -69,7 +69,7 @@ class PasswordInput extends StatelessWidget {
         },
         obscureText: true,
         decoration: InputDecoration(
-          labelText: 'password',
+          labelText: '비밀번호',
           helperText: '',
           labelStyle: TextStyle(color: Colors.black),
           enabledBorder: UnderlineInputBorder(
@@ -98,7 +98,7 @@ class PasswordConfirmInput extends StatelessWidget {
         },
         obscureText: true,
         decoration: InputDecoration(
-          labelText: 'password confirm',
+          labelText: '비밀번호 확인',
           helperText: '',
           labelStyle: TextStyle(color: Colors.black),
           focusedBorder: UnderlineInputBorder(
@@ -150,7 +150,7 @@ class RegistButton extends StatelessWidget {
             }
           });
         },
-        child: Text('Regist'),
+        child: Text('가입하기'),
       ),
     );
   }

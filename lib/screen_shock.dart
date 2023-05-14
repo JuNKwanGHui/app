@@ -1,3 +1,4 @@
+import 'package:ddvision/screen_shockgps.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -44,7 +45,7 @@ class _ShockVideoPageState extends State<ShockVideoPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          '이벤트 영상 - 충격감지',
+          '이벤트 영상-충격 감지',
           style: TextStyle(color: Colors.black87),
         ),
         iconTheme: IconThemeData(color: Colors.black87),
@@ -77,20 +78,39 @@ class _ShockVideoPageState extends State<ShockVideoPage> {
 
                       return ListTile(
                         title: Text(file.name),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: const Icon(
+                                Icons.download,
+                                color: Colors.black,
+                              ),
+                              onPressed: () => downloadFile(index, file),
+                            ),
+                            IconButton(
+                              icon: const Icon(
+                                Icons.gps_fixed,
+                                color: Colors.black,
+                              ),
+                              onPressed: () {
+                                String fileNameWithoutExtension = file.name.split('.').first; // 파일 이름에서 확장자를 제외한 부분을 가져옴
+                                String numberPrefix = fileNameWithoutExtension.split('shock1').first; // 파일 이름에서 첫 번째 "_"를 기준으로 앞에 있는 숫자들을 추출
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => ShockGps(numberPrefix)),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
                         subtitle: progress != null
-                            ? LinearProgressIndicator(
+                        ? LinearProgressIndicator(
                           value: progress,
                           valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
                           backgroundColor: Colors.black26,
                         )
                             : null,
-                        trailing: IconButton(
-                          icon: const Icon(
-                            Icons.download,
-                            color: Colors.black,
-                          ),
-                          onPressed: () => downloadFile(index, file),
-                        ),
                       );
                     },
                   ),

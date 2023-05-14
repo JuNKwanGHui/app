@@ -13,7 +13,7 @@ class LoginScreen extends StatelessWidget {
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/n_dvision.png'),
+              image: AssetImage('assets/images/d_vision.png'),
               fit: BoxFit.cover,
             ),
             color: Colors.black.withOpacity(0.9),

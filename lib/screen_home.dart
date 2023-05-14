@@ -1,3 +1,4 @@
+import 'package:ddvision/screen_chpw.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -6,13 +7,15 @@ import 'package:ddvision/screen_community.dart';
 import 'package:ddvision/screen_cut.dart';
 import 'package:ddvision/screen_drive.dart';
 import 'package:ddvision/screen_gps.dart';
+import 'package:ddvision/screen_pic.dart';
 import 'package:ddvision/screen_shock.dart';
 import 'package:ddvision/screen_stop.dart';
 import 'package:ddvision/screen_traffic.dart';
 import 'package:ddvision/screen_login.dart';
 import 'package:ddvision/notice_board//screen_notice.dart';
 import 'package:ddvision/model_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -24,6 +27,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final authClient =
     Provider.of<FirebaseAuthProvider>(context, listen: false);  //로그아웃 함수선언
+
+    User? user = FirebaseAuth.instance.currentUser;
+    String? email = user?.email;
 
     // if (authClient.user?.email == null) {
     //   Navigator.push(
@@ -54,8 +60,15 @@ class _HomePageState extends State<HomePage> {
                   ,
                 )
             ),
-            IconButton(onPressed: (){},   //클릭 시, 계정 설정 페이지 ( 함수 구현 필요)
-                icon: Icon(Icons.person))
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ChangePasswordPage()),
+                );
+              },
+              icon: Icon(Icons.person),
+            )
           ]
 
         // leading:
@@ -71,6 +84,7 @@ class _HomePageState extends State<HomePage> {
         //     MaterialLocalizations.of(context).openAppDrawerTooltip,
         //   ),
       ),
+
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.symmetric(vertical: 0),
@@ -79,13 +93,9 @@ class _HomePageState extends State<HomePage> {
               currentAccountPicture: CircleAvatar(
                 backgroundImage: AssetImage('assets/images/car1.jpeg'),
               ),
-              //otherAccountsPictures: [
-                // CircleAvatar(
-                //   backgroundImage: AssetImage('assets/profile.png'),
-                // )
-              //],
               //accountEmail: Text(authClient.user!.email!),
-              accountEmail: Text('qwer1234@gmail.com'),
+              //accountEmail: Text('qwer1234@gmail.com'),
+              accountEmail: Text(email ?? ''),
               accountName: Text('User'),
               onDetailsPressed: () {
                 print('press details');
@@ -97,39 +107,39 @@ class _HomePageState extends State<HomePage> {
                     bottomRight: Radius.circular(40),
                   )),
             ),
-            // ListTile(
-            //   leading: Icon(
-            //     Icons.photo_camera,
-            //     color: Colors.grey[850],
-            //   ),
-            //   title: Text('블랙박스 설정'),
-            //   onTap: () {
-            //     print('블랙박스 설정');
-            //     Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //             builder: (context) => test())
-            //     );
-            //   },
-            //   // trailing: Icon(Icons.add),
-            // ),
-
             ListTile(
               leading: Icon(
-                Icons.gps_fixed_sharp,
+                Icons.photo_camera,
                 color: Colors.grey[850],
               ),
-              title: Text('최근 위치'),
+              title: Text('촬영 사진'),
               onTap: () {
-                print('최근 위치');
+                print('촬영 사진');
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Gps())
+                        builder: (context) => PicPage())
                 );
               },
               // trailing: Icon(Icons.add),
             ),
+
+            // ListTile(
+            //   leading: Icon(
+            //     Icons.gps_fixed_sharp,
+            //     color: Colors.grey[850],
+            //   ),
+            //   title: Text('최근 위치'),
+            //   onTap: () {
+            //     print('최근 위치');
+            //     Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //             builder: (context) => Gps())
+            //     );
+            //   },
+            //   // trailing: Icon(Icons.add),
+            // ),
             ListTile(
               leading: Icon(
                 Icons.directions_bus,
@@ -148,20 +158,21 @@ class _HomePageState extends State<HomePage> {
             ),
             ListTile(
               leading: Icon(
-                Icons.add_road_sharp,
+                Icons.stop_circle_rounded,
                 color: Colors.grey[850],
               ),
-              title: Text('이벤트 영상 - 칼치기'),
+              title: Text('이벤트 영상 - 급정지'),
               onTap: () {
-                print('이벤트 영상 - 칼치기');
+                print('이벤트 영상 - 급정지');
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => CutVideoPage())
+                        builder: (context) => StopVideoPage())
                 );
               },
               // trailing: Icon(Icons.add),
             ),
+
             ListTile(
               leading: Icon(
                 Icons.traffic,
@@ -180,16 +191,16 @@ class _HomePageState extends State<HomePage> {
             ),
             ListTile(
               leading: Icon(
-                Icons.stop_circle_rounded,
+                Icons.add_road_sharp,
                 color: Colors.grey[850],
               ),
-              title: Text('이벤트 영상 - 급정지'),
+              title: Text('이벤트 영상 - 칼치기'),
               onTap: () {
-                print('이벤트 영상 - 급정지');
+                print('이벤트 영상 - 칼치기');
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => StopVideoPage())
+                        builder: (context) => CutVideoPage())
                 );
               },
               // trailing: Icon(Icons.add),
@@ -324,52 +335,59 @@ class _HomePageState extends State<HomePage> {
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         children: <Widget>[
-                          promoCard('assets/images/IMG_0694.jpeg'),
-                          promoCard('assets/images/two.jpg'),
-                          promoCard('assets/images/three.jpg'),
-                          promoCard('assets/images/four.jpg'),
+                          promoCard('assets/images/road_image1.png'),
+                          promoCard('assets/images/road_image2.png'),
+                          promoCard('assets/images/road_image3.png'),
                         ],
                       ),
                     ),
                     SizedBox(
                       height: 20,
                     ),
-                    Container(
-                      height: 150, //홈 공지사항 박스
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Gps()),
+                    );
+                  },
+                  child: Container(
+                    height: 150, //홈 공지사항 박스
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage('assets/images/gps_screen.jpg')),
+                    ),
+                    child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage('assets/images/three.jpg')),
+                        gradient: LinearGradient(
+                            begin: Alignment.bottomRight,
+                            stops: [
+                              0.3,
+                              0.9
+                            ],
+                            colors: [
+                              Colors.black.withOpacity(.8),
+                              Colors.black.withOpacity(.2)
+                            ]),
                       ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          gradient: LinearGradient(
-                              begin: Alignment.bottomRight,
-                              stops: [
-                                0.3,
-                                0.9
-                              ],
-                              colors: [
-                                Colors.black.withOpacity(.8),
-                                Colors.black.withOpacity(.2)
-                              ]),
-                        ),
-                        child: Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Text(
-                              '최근 위치',
-                              style:
-                              TextStyle(color: Colors.white, fontSize: 20),
-                            ),
+                      child: Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text(
+                            '최근 위치',
+                            style:
+                            TextStyle(color: Colors.white, fontSize: 20),
                           ),
                         ),
                       ),
-                    )
-                  ],
+                    ),
+                    ),
+                  ),
+                ],
                 ),
               )
             ],

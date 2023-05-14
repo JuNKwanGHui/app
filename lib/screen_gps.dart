@@ -49,9 +49,9 @@ class _GpsState extends State<Gps> {
           builder: (context, snapshot) {
             if (snapshot.hasData && snapshot.data!.value != null) {
               final data =
-                  (snapshot.data!.value as Map<dynamic, dynamic>).values.last;
-              final lat = double.parse(data["lat"]);
-              final lng = double.parse(data["lng"]);
+                  (snapshot.data!.value as Map<dynamic, dynamic>?)?.values.last;
+              final lat = double.parse(data["lat"]??"37.211753");
+              final lng = double.parse(data["lng"]??"126.952445");
 
               return GoogleMap(
                 onMapCreated: _onMapCreated,
