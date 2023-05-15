@@ -7,12 +7,12 @@ import 'package:ddvision/screen_community.dart';
 import 'package:ddvision/screen_cut.dart';
 import 'package:ddvision/screen_drive.dart';
 import 'package:ddvision/screen_gps.dart';
+import 'package:ddvision/screen_route.dart';
 import 'package:ddvision/screen_pic.dart';
 import 'package:ddvision/screen_shock.dart';
 import 'package:ddvision/screen_stop.dart';
 import 'package:ddvision/screen_traffic.dart';
 import 'package:ddvision/screen_login.dart';
-import 'package:ddvision/notice_board//screen_notice.dart';
 import 'package:ddvision/model_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -30,13 +30,6 @@ class _HomePageState extends State<HomePage> {
 
     User? user = FirebaseAuth.instance.currentUser;
     String? email = user?.email;
-
-    // if (authClient.user?.email == null) {
-    //   Navigator.push(
-    //     context,
-    //     MaterialPageRoute(builder: (context) => LoginScreen()),
-    //   );
-    // }
 
     return Scaffold(
       resizeToAvoidBottomInset : false,
@@ -70,19 +63,6 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.person),
             )
           ]
-
-        // leading:
-        //   IconButton(
-        //     icon: Icon(
-        //       Icons.menu,
-        //       color: Colors.black87,
-        //     ),
-        //     onPressed: () {
-        //       Scaffold.of(context).openDrawer();
-        //     },
-        //     tooltip:
-        //     MaterialLocalizations.of(context).openAppDrawerTooltip,
-        //   ),
       ),
 
       drawer: Drawer(
@@ -122,24 +102,23 @@ class _HomePageState extends State<HomePage> {
                 );
               },
               // trailing: Icon(Icons.add),
+            ),ListTile(
+              leading: Icon(
+                Icons.gps_not_fixed,
+                color: Colors.grey[850],
+              ),
+              title: Text('위치 찾기'),
+              onTap: () {
+                print('위치 찾기');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => RoutePage()
+                    )
+                );
+              },
+              // trailing: Icon(Icons.add),
             ),
-
-            // ListTile(
-            //   leading: Icon(
-            //     Icons.gps_fixed_sharp,
-            //     color: Colors.grey[850],
-            //   ),
-            //   title: Text('최근 위치'),
-            //   onTap: () {
-            //     print('최근 위치');
-            //     Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //             builder: (context) => Gps())
-            //     );
-            //   },
-            //   // trailing: Icon(Icons.add),
-            // ),
             ListTile(
               leading: Icon(
                 Icons.directions_bus,
@@ -221,38 +200,6 @@ class _HomePageState extends State<HomePage> {
               },
               // trailing: Icon(Icons.add),
             ),
-            // ListTile(
-            //   leading: Icon(
-            //     Icons.question_mark,
-            //     color: Colors.grey[850],
-            //   ),
-            //   title: Text('공지사항'),
-            //   onTap: () {
-            //     print('공지사항 클릭');
-            //     Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //             builder: (context) => Notice())
-            //     );
-            //   },
-            //   // trailing: Icon(Icons.add),
-            // ),
-            // ListTile(
-            //   leading: Icon(
-            //     Icons.settings,
-            //     color: Colors.grey[850],
-            //   ),
-            //   title: Text('설정'),
-            //   onTap: () {
-            //     print('설정');
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //           builder: (context) => test5())
-            //       );
-            //
-            //   },
-            // )
           ],
         ),
       ),
@@ -335,9 +282,33 @@ class _HomePageState extends State<HomePage> {
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         children: <Widget>[
-                          promoCard('assets/images/road_image1.png'),
-                          promoCard('assets/images/road_image2.png'),
-                          promoCard('assets/images/road_image3.png'),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => CutVideoPage()),
+                              );
+                            },
+                            child: promoCard('assets/images/road_image1.png'),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => TrafficVideoPage()),
+                              );
+                            },
+                            child: promoCard('assets/images/road_image2.png'),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => StopVideoPage()),
+                              );
+                            },
+                            child: promoCard('assets/images/road_image3.png'),
+                          ),
                         ],
                       ),
                     ),
@@ -451,36 +422,6 @@ class PageView1 extends State<test>{
   }
 }
 
-// class test2 extends StatefulWidget {
-//   @override
-//   PageView2 createState() => PageView2();
-// }
-//
-// class PageView2 extends State<test2>{
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Color.fromRGBO(244, 243, 243, 1),
-//       appBar: AppBar(
-//         title: Text('공지사항',style: TextStyle(color: Colors.black87),),
-//         iconTheme: IconThemeData(color: Colors.black87),
-//         backgroundColor: Colors.white,
-//         brightness: Brightness.light,
-//         elevation: 0,
-//       ),
-//
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: (){
-//           print('공지사항 추가');},
-//         tooltip: 'Increment',
-//         child: Icon(Icons.add),
-//
-//
-//       ),
-//     );
-//   }
-// }
-
 class test3 extends StatefulWidget {
   @override
   PageView3 createState() => PageView3();
@@ -502,26 +443,3 @@ class PageView3 extends State<test3>{
     );
   }
 }
-
-// class test4 extends StatefulWidget {
-//   @override
-//   PageView4 createState() => PageView4();
-// }
-//
-// class PageView4 extends State<test4>{
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         backgroundColor: Color.fromRGBO(244, 243, 243, 1),
-//         appBar: AppBar(
-//           title: Text('셔틀버스 좌석 예약',style: TextStyle(color: Colors.black87),),
-//           iconTheme: IconThemeData(color: Colors.black87),
-//           backgroundColor: Colors.white,
-//           elevation: 0, systemOverlayStyle: SystemUiOverlayStyle.dark,
-//         )
-//
-//
-//     );
-//   }
-// }
-//

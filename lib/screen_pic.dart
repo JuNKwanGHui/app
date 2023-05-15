@@ -54,7 +54,6 @@ class _PicPageState extends State<PicPage> {
       ),
       body: Column(
         children: [
-          _buildCalendar(),
           FutureBuilder<ListResult>(
             future: _futureFileList,
             builder: (context, snapshot) {
@@ -156,51 +155,5 @@ class _PicPageState extends State<PicPage> {
       );
       print(result);
     }
-
-  }
-
-  DateTime focusedDay = DateTime.now();
-
-  Widget _buildCalendar() {
-    initializeDateFormatting();
-    return TableCalendar<DateTime>(
-      locale: 'ko_KR',
-      firstDay: DateTime.utc(2010, 1, 1),
-      lastDay: DateTime.now(),
-      focusedDay: focusedDay,
-      calendarFormat: CalendarFormat.month,
-      headerStyle: HeaderStyle(
-        titleCentered: true,
-        titleTextFormatter: (date, locale) =>
-            DateFormat.yMMMMd(locale).format(date),
-        formatButtonVisible: false,
-        titleTextStyle: const TextStyle(
-          fontSize: 20.0,
-          color: Colors.black,
-        ),
-        headerPadding: const EdgeInsets.symmetric(vertical: 4.0),
-        leftChevronIcon: const Icon(
-          Icons.arrow_left,
-          size: 40.0,
-          color: Colors.black,
-        ),
-        rightChevronIcon: const Icon(
-          Icons.arrow_right,
-          size: 40.0,
-          color: Colors.black,
-        ),
-      ),
-      onDaySelected: (selectedDate, focusedDate) {
-        setState(() {
-          _futureFileList = _getFilesForSelectedDate(selectedDate);
-          // 날짜 선택 후에 해당 날짜에 머무르게 설정
-          focusedDay = selectedDate;
-        });
-      },
-      selectedDayPredicate: (date) {
-        // 선택한 날짜에 원으로 표시
-        return isSameDay(date, focusedDay);
-      },
-    );
   }
 }

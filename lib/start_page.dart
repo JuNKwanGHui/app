@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'authentication.dart';
-import 'package:ddvision/login_page.dart';
-import 'package:ddvision/register_page.dart';
+
 
 class StartPage extends StatefulWidget {
   @override
